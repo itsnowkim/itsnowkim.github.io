@@ -1,9 +1,13 @@
 # main links
 main:
-  - title: "About" # 네비게이션 바에 표시 되는 이름
-    url: "/about/" # 클릭시 이동할 URL
-  - title: "Category"
-    url: /categories/
+  - title: "Categories" # 네비게이션 바에 표시 되는 이름
+    url: /categories/ # 클릭시 이동할 URL
+  - title: "Tags"
+    url: /tags/
+  - title: "About"
+    url: /about/
+  - title: "연도별 포스트"
+    url: /posts/
   # - title: "About"
   #   url: https://mmistakes.github.io/minimal-mistakes/about/
   # - title: "Sample Posts"
