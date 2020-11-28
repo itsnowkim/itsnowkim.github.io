@@ -15,7 +15,7 @@ remote_theme             : "mmistakes/minimal-mistakes"
 minimal_mistakes_skin    : "default" # "air", "dark", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 
 # Site Settings
-locale                   : "en-US"
+locale                   : "ko-KR"
 title                    : "Nowkim's blog"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
@@ -26,13 +26,15 @@ baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "itsnowkim/itsnowkim.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 logo                     : # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
-masthead_title           : # overrides the website title displayed in the masthead, use " " for no title
-# breadcrumbs            : false # true, false (default)
-words_per_minute         : 200
+masthead_title           : "Nowkim's Blog" # overrides the website title displayed in the masthead, use " " for no title
+breadcrumbs              : true # true, false (default)
+words_per_minute         : 200 # 해당 포스트 읽는데 걸리는 시간을 계산하기 위해 대락 분당 읽는 수가 몇글자가 될지 적는 공간.
+
+# 댓글 관련 부분
 comments:
-  provider               : # false (default), "disqus", "discourse", "facebook", "staticman", "staticman_v2", "utterances", "custom"
+  provider               : "disqus" # false (default), "disqus", "discourse", "facebook", "staticman", "staticman_v2", "utterances", "custom"
   disqus:
-    shortname            : # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
+    shortname            : nowkim # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
   discourse:
     server               : # https://meta.discourse.org/t/embedding-discourse-comments-via-javascript/31963 , e.g.: meta.discourse.org
   facebook:
@@ -44,15 +46,31 @@ comments:
     theme                : # "github-light" (default), "github-dark"
     issue_term           : # "pathname" (default)
   staticman:
+    allowedFields        : # ['name', 'email', 'url', 'message']
     branch               : # "master"
+    commitMessage        : # "New comment by {fields.name}"
+    filename             : # comment-{@timestamp}
+    format               : # "yml"
+  moderation             : # true
+  path                   : # "/_data/comments/{options.slug}" (default)
+  requiredFields         : # ['name', 'email', 'message']
+  transforms:
+    email                : # "md5"
+  generatedFields:
+    date:
+      type               : # "date"
+      options:
+        format           : # "iso8601" (default), "timestamp-seconds", "timestamp-milliseconds"
     endpoint             : # "https://{your Staticman v3 API}/v3/entry/github/"
+    
+# 구글 recaptcha 세팅    
 reCaptcha:
   siteKey                :
   secret                 :
 atom_feed:
   path                   : # blank (default) uses feed.xml
-search                   : # true, false (default)
-search_full_content      : # true, false (default)
+search                   : true # true, false (default)
+search_full_content      : true # true, false (default)
 search_provider          : # lunr (default), algolia, google
 algolia:
   application_id         : # YOUR_APPLICATION_ID
@@ -93,9 +111,9 @@ analytics:
 
 # Site Author
 author:
-  name             : "Hyunjae Kim"
+  name             : "김현재"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "끙끙대며 배우는 중"
+  bio              : "끙끙대며 배우는 중" <br> 19.10.07~21.04.25 군 복무중 입니다.
   location         : "Seoul, Korea"
   email            : "peterhyunjae@naver.com"
   links:
@@ -110,35 +128,38 @@ author:
       # url: "https://twitter.com/"
     - label: "Facebook"
       icon: "fab fa-fw fa-facebook-square"
-      # url: "https://facebook.com/"
+      url: "https://ms-my.facebook.com/people/%EA%B9%80%ED%98%84%EC%9E%AC/100014398279125"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      # url: "https://github.com/"
+      url: "https://github.com/itsnowkim"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
-      # url: "https://instagram.com/"
+      url: "https://www.instagram.com/n0wkim/"
 
 # Site Footer
 footer:
   links:
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope-square"
+      url: mailto:peterhyunjae@naver.com
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
       # url:
     - label: "Facebook"
       icon: "fab fa-fw fa-facebook-square"
-      # url:
+      url: "https://ms-my.facebook.com/people/%EA%B9%80%ED%98%84%EC%9E%AC/100014398279125"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      # url:
+      url: 
     - label: "GitLab"
       icon: "fab fa-fw fa-gitlab"
-      # url:
+      url: "https://github.com/itsnowkim"
     - label: "Bitbucket"
       icon: "fab fa-fw fa-bitbucket"
       # url:
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
-      # url:
+      url: "https://www.instagram.com/n0wkim/"
 
 
 # Reading Files
@@ -266,7 +287,7 @@ compress_html:
     envs: development
 
 
-# Defaults
+# Defaults Post들에 적용될 기본 설정들
 defaults:
   # _posts
   - scope:
@@ -276,6 +297,15 @@ defaults:
       layout: single
       author_profile: true
       read_time: true
-      comments: # true
+      comments: true
       share: true
       related: true
+      popular: false
+      
+  # _pages
+  - scope:
+      path: "_pages"
+      type: pages
+    values:
+      layout: single
+      author_profile: true 
